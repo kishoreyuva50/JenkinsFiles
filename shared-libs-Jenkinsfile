@@ -1,0 +1,26 @@
+@Library('shared-libs') _
+pipeline {
+    agent any
+
+    stages {
+        stage('GitHub') {
+            steps {
+                stages("scm")
+            }
+        }
+		
+        stage('MavenBuild') {
+            steps {
+				stages("Build")
+                cust("Maven")
+            }
+        }
+		
+        stage('GradleBuild') {
+            steps {
+				stages("BuildImage")
+                cust("Gradle")
+            }
+        }
+    }
+}
