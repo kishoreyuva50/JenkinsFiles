@@ -30,6 +30,11 @@ pipeline {
                 cust("Maven")
             }
         }
+	stage('Testing') {
+            steps {
+		echo " selected namespace is ${Name_Space} "
+            }
+        }
 		
         stage('GradleBuild') {
             steps {
