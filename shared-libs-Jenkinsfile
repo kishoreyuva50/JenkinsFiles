@@ -13,7 +13,7 @@ pipeline {
         parameterizedCron('''
             # leave spaces where you want them around the parameters. They'll be trimmed.
             # we let the build run with the default name
-            */1 * * * * %PRODUCT_NAME=APPLE;GITREPO=DEVELOP;GIT_BRANCHES=dev
+            */1 * * * * %PRODUCT_NAME=APPLE;GITREPO=DEVELOP;GIT_BRANCHES=dev;Name_Space=igcb-idl-clms-c25755-dit
         ''')
     }
 
