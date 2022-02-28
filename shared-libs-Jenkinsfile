@@ -1,6 +1,21 @@
 @Library('shared-libs') _
 pipeline {
     agent any
+    
+    parameters {
+      	    choice(choices: ['--None--','ABCD','APPLE'], description: 'Select a Product name this service belongs to', name: 'PRODUCT_NAME')
+            string(defaultValue: 'GIT_REPO', description: 'Enter Common Git Repo Name', name: 'COMM-GITREPO', trim: false)
+            string(defaultValue: 'master', description: 'Enter Common Git Repo branch', name: 'COMM-GIT_BRANCHES', trim: false)
+            choice(choices: ['--None--','TESTING','DEVELOP'], description: 'Select Git Repo Name', name: 'GITREPO')
+	    choice(choices: ['--None--','master','dev','qa'], description: 'Select the Git Branch Name', name: 'GIT_BRANCHES')
+    }
+    triggers {
+        parameterizedCron('''
+            # leave spaces where you want them around the parameters. They'll be trimmed.
+            # we let the build run with the default name
+            */1 * * * * %PRODUCT_NAME=APPLE;GITREPO=DEVELOP
+        ''')
+    }
 
     stages {
         stage('GitHub') {
