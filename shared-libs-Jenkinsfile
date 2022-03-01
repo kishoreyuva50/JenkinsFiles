@@ -9,6 +9,7 @@ pipeline {
             choice(choices: ['--None--','TESTING','DEVELOP'], description: 'Select Git Repo Name', name: 'GITREPO')
 	    choice(choices: ['--None--','master','dev','qa'], description: 'Select the Git Branch Name', name: 'GIT_BRANCHES')
     }
+    /**
     triggers {
         parameterizedCron('''
             # leave spaces where you want them around the parameters. They'll be trimmed.
@@ -17,7 +18,7 @@ pipeline {
 	    */1 * * * * %PRODUCT_NAME=ABCD;GITREPO=TESTING;GIT_BRANCHES=qa;Name_Space=igcb-idl-clms-c25766-qa
         ''')
     }
-
+**/
     stages {
         stage('GitHub') {
             steps {
